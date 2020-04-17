@@ -24,7 +24,6 @@ public class ActivityStreamPage extends AbstractPageBase {
     @FindBy(xpath = "//span[@class ='menu-popup-item-text']")
     private WebElement tabsUnderMore;
 
-
     public void getTabsOnMore(int tabNum) {
 
         BrowserUtils.waitForPageToLoad(15);
@@ -41,6 +40,7 @@ BrowserUtils.wait(6);
 //Method that verifies a file is downloaded.
 
     public boolean isFileDownloaded(String path, String filename) {
+
         return Files.exists(Paths.get(path, filename));
     }
 
