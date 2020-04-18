@@ -1,6 +1,6 @@
 package automation.tests;
 
-import automation.pages.file.LoginPage;
+import automation.pages.fileUpload.LoginPage;
 import org.testng.annotations.Test;
 
 public class LoginTest extends AbstractTestBase {

@@ -1,7 +1,7 @@
 package automation.tests.fileTests;
 
-import automation.pages.file.FilePage;
-import automation.pages.file.LoginPage;
+import automation.pages.fileUpload.FilePage;
+import automation.pages.fileUpload.LoginPage;
 import automation.tests.AbstractTestBase;
 import automation.utilities.BrowserUtils;
 import automation.utilities.Driver;
@@ -58,7 +58,7 @@ public class UserStory5 extends AbstractTestBase {
         test.pass("File uploaded successfully.");
 
     }
-    //=================================
+    //====================================
     /*
     Optional Test: User should be able to click "Applications" and see all
     available applications.

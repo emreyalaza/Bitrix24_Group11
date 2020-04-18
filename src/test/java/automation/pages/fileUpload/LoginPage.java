@@ -1,4 +1,4 @@
-package automation.pages.file;
+package automation.pages.fileUpload;
 
 import automation.pages.AbstractPageBase;
 import automation.utilities.BrowserUtils;
