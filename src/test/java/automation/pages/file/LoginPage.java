@@ -1,4 +1,4 @@
-package automation.pages.login;
+package automation.pages.file;
 
 import automation.pages.AbstractPageBase;
 import automation.utilities.BrowserUtils;

@@ -1,24 +1,22 @@
-package automation.tests.activityStream;
+package automation.tests.fileTests;
 
-import automation.pages.login.ActivityStreamPage;
-import automation.pages.login.LoginPage;
+import automation.pages.file.FilePage;
+import automation.pages.file.LoginPage;
 import automation.tests.AbstractTestBase;
 import automation.utilities.BrowserUtils;
 import automation.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.Date;
 import java.util.List;
 
-public class Tests extends AbstractTestBase {
+public class UserStory5 extends AbstractTestBase {
 
     LoginPage loginPage = new LoginPage();
-    ActivityStreamPage activityStreamPage = new ActivityStreamPage();
+    FilePage activityStreamPage = new FilePage();
 
 
     /*
@@ -45,14 +43,14 @@ public class Tests extends AbstractTestBase {
         BrowserUtils.wait(5);
         // ==========
 
-        String filePath = "/Users/sevimzini/Desktop/Hello batch 15.docx";
+        String filePath = "/Users/bergenhigh/Desktop/Hello batch 15.docx";
 
         //Date date = new Date();
         //String timeStamp = "_" + date.toString().substring(4).substring(0, 23).replace(' ', '_');
        // String fileName = "Hello batch 15"+timeStamp+".docx";
        String fileName = "Hello batch 15.docx";
 
-        Driver.getDriver().findElement(By.xpath("//input[contains(@name,'bxu_files[]')]")).sendKeys("/Users/sevimzini/Desktop/Hello batch 15.docx");
+        Driver.getDriver().findElement(By.xpath("//input[contains(@name,'bxu_files[]')]")).sendKeys("/Users/bergenhigh/Desktop/Hello batch 15.docx");
         BrowserUtils.wait(6);
 
         //verification part:
@@ -60,6 +58,7 @@ public class Tests extends AbstractTestBase {
         test.pass("File uploaded successfully.");
 
     }
+    //=================================
     /*
     Optional Test: User should be able to click "Applications" and see all
     available applications.
