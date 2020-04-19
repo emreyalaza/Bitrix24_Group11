@@ -8,6 +8,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -26,11 +29,13 @@ public class FilePage extends AbstractPageBase {
     private WebElement more;
 
 
+
+
     public void getTabsOnMore(String tabName) {
+
 
         BrowserUtils.waitForPageToLoad(15);
      wait.until(ExpectedConditions.elementToBeClickable(more)).click();
-     BrowserUtils.wait(6);
      WebElement element = Driver.getDriver().findElement(By.xpath("(//span[@class ='menu-popup-item-text'])[" + tabName + "]"));
 
         wait.until(ExpectedConditions.elementToBeClickable(element));
@@ -46,4 +51,18 @@ public class FilePage extends AbstractPageBase {
         return Files.exists(Paths.get(path, filename));
     }
 
-}
+    public static File createTempFile(String prefix, String suffix, File directory) {
+        File tempFile = null;
+        try {
+            tempFile = File.createTempFile("hello", ".tmp");
+        } catch (IOException e) {
+
+        }
+        System.out.println("Temp file On Default Location: " + tempFile.getAbsolutePath());
+        try {
+            tempFile = File.createTempFile("hello", ".tmp", new File("C:/"));
+        } catch (IOException e) {
+
+        }
+      return tempFile;
+    }}

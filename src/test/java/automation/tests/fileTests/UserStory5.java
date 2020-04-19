@@ -11,12 +11,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class UserStory5 extends AbstractTestBase {
 
     LoginPage loginPage = new LoginPage();
-    FilePage activityStreamPage = new FilePage();
+    FilePage filePage = new FilePage();
 
 
     /*
@@ -27,35 +29,46 @@ public class UserStory5 extends AbstractTestBase {
 
     @Test
     public void userStory5() {
-
-
+        File temp=new File("Test");
+        String path="";
+        String fileName="";
         test = report.createTest("verify  to click on upload files icon to upload files");
+        try
+        {
+            String pathCommon= System.getProperty("user.dir");
+            temp = File.createTempFile("UserStory_5_Test", ".txt",new File(pathCommon));
+            System.out.println("Temp file created : " + temp.getAbsolutePath());
+            System.out.println("Temp file exists : " + temp.exists());
+            path=temp.getAbsolutePath();
+            fileName=temp.getName();
+        } catch (IOException e)
+        {
+
+        }
         loginPage.login();
         test.info("Login as HR");
         loginPage.navigateTo("Activity Stream");
-
-     //   WebElement more = Driver.getDriver().findElement(By.xpath("//span[contains(@id,'feed-add-post-form-link-text')]"));
-       // wait.until(ExpectedConditions.elementToBeClickable(more)).click();
-        BrowserUtils.wait(6);
-        activityStreamPage.getTabsOnMore("File");
-
-     //   WebElement file = Driver.getDriver().findElement(By.xpath("(//span[@class ='menu-popup-item-text'])[1]"));
-       // wait.until(ExpectedConditions.elementToBeClickable(file)).click();
-       // BrowserUtils.wait(5);
+        WebElement more = Driver.getDriver().findElement(By.xpath("//span[contains(@id,'feed-add-post-form-link-text')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(more)).click();
+        BrowserUtils.wait(3);
+        WebElement file = Driver.getDriver().findElement(By.xpath("(//span[@class ='menu-popup-item-text'])[1]"));
+        wait.until(ExpectedConditions.elementToBeClickable(file)).click();
+        BrowserUtils.wait(3);
         // ==========
+        Driver.getDriver().findElement(By.xpath("//input[contains(@name,'bxu_files[]')]")).sendKeys(path);
+        BrowserUtils.wait(3);
+        String fileNameUploaded=Driver.getDriver().findElement(By.xpath("//td[@class='files-name']/span[1]/span[1]")).getText();
 
-        String filePath = "/Users/bergenhigh/Desktop/Hello batch 15.docx";
-        String fileName = "Hello batch 15.docx";
-
-        Driver.getDriver().findElement(By.xpath("//input[contains(@name,'bxu_files[]')]")).sendKeys("/Users/bergenhigh/Desktop/Hello batch 15.docx");
-        BrowserUtils.wait(6);
 
         //verification part:
-        Assert.assertTrue(activityStreamPage.isFileDownloaded(filePath, fileName), "File is not downloaded successfully");
-        test.pass("File uploaded successfully.");
+        Assert.assertTrue(fileNameUploaded.contains(fileName),"File name is not on upload list");
 
+        //temp.delete(); //For deleting immediately
+        temp.deleteOnExit(); //Delete on runtime exit
+        test.pass("File uploaded successfully.");
     }
-    //====================================
+
+
 
     /*
     Optional Test: User should be able to click "Applications" and see all
