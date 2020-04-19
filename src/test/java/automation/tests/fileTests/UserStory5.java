@@ -34,21 +34,18 @@ public class UserStory5 extends AbstractTestBase {
         test.info("Login as HR");
         loginPage.navigateTo("Activity Stream");
 
-        WebElement more = Driver.getDriver().findElement(By.xpath("//span[contains(@id,'feed-add-post-form-link-text')]"));
-        wait.until(ExpectedConditions.elementToBeClickable(more)).click();
+     //   WebElement more = Driver.getDriver().findElement(By.xpath("//span[contains(@id,'feed-add-post-form-link-text')]"));
+       // wait.until(ExpectedConditions.elementToBeClickable(more)).click();
         BrowserUtils.wait(6);
+        activityStreamPage.getTabsOnMore("File");
 
-        WebElement file = Driver.getDriver().findElement(By.xpath("(//span[@class ='menu-popup-item-text'])[1]"));
-        wait.until(ExpectedConditions.elementToBeClickable(file)).click();
-        BrowserUtils.wait(5);
+     //   WebElement file = Driver.getDriver().findElement(By.xpath("(//span[@class ='menu-popup-item-text'])[1]"));
+       // wait.until(ExpectedConditions.elementToBeClickable(file)).click();
+       // BrowserUtils.wait(5);
         // ==========
 
         String filePath = "/Users/bergenhigh/Desktop/Hello batch 15.docx";
-
-        //Date date = new Date();
-        //String timeStamp = "_" + date.toString().substring(4).substring(0, 23).replace(' ', '_');
-       // String fileName = "Hello batch 15"+timeStamp+".docx";
-       String fileName = "Hello batch 15.docx";
+        String fileName = "Hello batch 15.docx";
 
         Driver.getDriver().findElement(By.xpath("//input[contains(@name,'bxu_files[]')]")).sendKeys("/Users/bergenhigh/Desktop/Hello batch 15.docx");
         BrowserUtils.wait(6);
@@ -59,6 +56,7 @@ public class UserStory5 extends AbstractTestBase {
 
     }
     //====================================
+
     /*
     Optional Test: User should be able to click "Applications" and see all
     available applications.
@@ -88,3 +86,9 @@ public class UserStory5 extends AbstractTestBase {
     }
 
 }
+/*
+timeStamp
+       Date date = new Date();
+       String timeStamp = "_" + date.toString().substring(4).substring(0, 23).replace(' ', '_');
+       String fileName = "Hello batch 15"+timeStamp+".docx";
+ */

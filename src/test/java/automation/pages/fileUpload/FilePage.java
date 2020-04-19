@@ -13,8 +13,7 @@ import java.nio.file.Paths;
 
 public class FilePage extends AbstractPageBase {
 
-    @FindBy(xpath = "//span[contains(@id,'feed-add-post-form-link-text')]")
-    public WebElement moreTab;
+
 
 
     @FindBy(xpath = "(//span[@class ='menu-popup-item-text'])[1]")
@@ -23,13 +22,16 @@ public class FilePage extends AbstractPageBase {
     @FindBy(xpath = "//span[@class ='menu-popup-item-text']")
     private WebElement tabsUnderMore;
 
+    @FindBy(xpath = "//span[contains(@id,'feed-add-post-form-link-text')]")
+    private WebElement more;
 
-    public void getTabsOnMore(int tabNum) {
+
+    public void getTabsOnMore(String tabName) {
 
         BrowserUtils.waitForPageToLoad(15);
-        wait.until(ExpectedConditions.elementToBeClickable(moreTab)).click();
-        BrowserUtils.wait(6);
-        WebElement element = Driver.getDriver().findElement(By.xpath("(//span[@class ='menu-popup-item-text'])[" + tabNum + "]"));
+     wait.until(ExpectedConditions.elementToBeClickable(more)).click();
+     BrowserUtils.wait(6);
+     WebElement element = Driver.getDriver().findElement(By.xpath("(//span[@class ='menu-popup-item-text'])[" + tabName + "]"));
 
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
