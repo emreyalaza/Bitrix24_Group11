@@ -26,47 +26,47 @@ public class UserStory5 extends AbstractTestBase {
     local disks, download from external drive, select documents
     from bixtrix24, and create files to upload.
      */
-
     @Test
     public void userStory5() {
-        File temp=new File("Test");
-        String path="";
-        String fileName="";
+    //temp file creation for the test
+        File temp = new File("Test");
+        String path = "";
+        String fileName = "";
         test = report.createTest("verify  to click on upload files icon to upload files");
-        try
-        {
-            String pathCommon= System.getProperty("user.dir");
-            temp = File.createTempFile("UserStory_5_Test", ".txt",new File(pathCommon));
+        try {
+            String pathCommon = System.getProperty("user.dir");
+            temp = File.createTempFile("UserStory_5_Test", ".txt", new File(pathCommon));
             System.out.println("Temp file created : " + temp.getAbsolutePath());
             System.out.println("Temp file exists : " + temp.exists());
-            path=temp.getAbsolutePath();
-            fileName=temp.getName();
-        } catch (IOException e)
-        {
+            path = temp.getAbsolutePath();
+            fileName = temp.getName();
+
+        } catch (IOException e) {
 
         }
         loginPage.login();
         test.info("Login as HR");
         loginPage.navigateTo("Activity Stream");
-        WebElement more = Driver.getDriver().findElement(By.xpath("//span[contains(@id,'feed-add-post-form-link-text')]"));
-        wait.until(ExpectedConditions.elementToBeClickable(more)).click();
-        BrowserUtils.wait(3);
-        WebElement file = Driver.getDriver().findElement(By.xpath("(//span[@class ='menu-popup-item-text'])[1]"));
-        wait.until(ExpectedConditions.elementToBeClickable(file)).click();
+
+        filePage.clickOnFile();
+
         BrowserUtils.wait(3);
         // ==========
         Driver.getDriver().findElement(By.xpath("//input[contains(@name,'bxu_files[]')]")).sendKeys(path);
         BrowserUtils.wait(3);
-        String fileNameUploaded=Driver.getDriver().findElement(By.xpath("//td[@class='files-name']/span[1]/span[1]")).getText();
+        String fileNameUploaded = Driver.getDriver().findElement(By.xpath("//td[@class='files-name']/span[1]/span[1]")).getText();
 
 
         //verification part:
-        Assert.assertTrue(fileNameUploaded.contains(fileName),"File name is not on upload list");
+        Assert.assertTrue(fileNameUploaded.contains(fileName), "File name is not on upload list");
 
         //temp.delete(); //For deleting immediately
         temp.deleteOnExit(); //Delete on runtime exit
         test.pass("File uploaded successfully.");
+
     }
+
+
 
 
 

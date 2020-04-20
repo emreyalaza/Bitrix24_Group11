@@ -17,8 +17,6 @@ import java.nio.file.Paths;
 public class FilePage extends AbstractPageBase {
 
 
-
-
     @FindBy(xpath = "(//span[@class ='menu-popup-item-text'])[1]")
     private WebElement fileTab;
 
@@ -28,18 +26,19 @@ public class FilePage extends AbstractPageBase {
     @FindBy(xpath = "//span[contains(@id,'feed-add-post-form-link-text')]")
     private WebElement more;
 
+/*
+method that clicks on file under more tab
+ */
+
+    public void clickOnFile() {
 
 
+        BrowserUtils.waitForPageToLoad(20);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("feed-add-post-form-link-text"))).click();
 
-    public void getTabsOnMore(String tabName) {
-
-
-        BrowserUtils.waitForPageToLoad(15);
-     wait.until(ExpectedConditions.elementToBeClickable(more)).click();
-     WebElement element = Driver.getDriver().findElement(By.xpath("(//span[@class ='menu-popup-item-text'])[" + tabName + "]"));
-
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-        element.click();
+        BrowserUtils.wait(5);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='menu-popup-item menu-popup-no-icon feed-add-post-form-file feed-add-post-form-file-more ']/span[@class='menu-popup-item-text']"))).click();
+        BrowserUtils.wait(5);
 
 
     }
@@ -64,5 +63,6 @@ public class FilePage extends AbstractPageBase {
         } catch (IOException e) {
 
         }
-      return tempFile;
-    }}
+        return tempFile;
+    }
+}

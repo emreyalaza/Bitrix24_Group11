@@ -27,12 +27,12 @@ public abstract class AbstractPageBase {
 
     public void navigateTo(String menuName) {
 
-        String name = "//span [@class = 'menu-item-link-text' and contains (text (), '" + menuName + "')]";
-        WebElement menuElement = driver.findElement(By.xpath(name));
+//        String name = "//span [@class = 'menu-item-link-text' and contains (text (), '" + menuName + "')]";
+//        WebElement menuElement = driver.findElement(By.xpath(name));
 
-      /* One-shot way:
+      // One-shot way:
          WebElement menuElement = Driver.getDriver().findElement(By.xpath("//span [@class = 'menu-item-link-text' and contains (text (), '"+menuName+"')]"));
-      */
+
 
         wait.until(ExpectedConditions.visibilityOf(menuElement));
         wait.until(ExpectedConditions.elementToBeClickable(menuElement));
@@ -62,5 +62,7 @@ public void searchBar (String searchText){
 
 }
 
-}
+
+    }
+
 
