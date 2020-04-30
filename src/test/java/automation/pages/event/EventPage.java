@@ -7,6 +7,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 import java.security.Key;
 import java.util.List;
@@ -43,37 +44,48 @@ public class EventPage extends AbstractPageBase {
     @FindBy(xpath = "//span[@id='lhe_button_editor_blogPostForm_calendar']")
     private WebElement visualEditor;
 
+    @FindBy(id = "bx-html-editor-tlbr-oCalEditorcal_3Jcl")
+   public WebElement toolbar;
+
+
 
     @FindBy(xpath = "//input[@id='feed-cal-event-fromcal_3Jcl']")
-    private WebElement startDate;
+    public WebElement startDate;
     @FindBy(xpath = "//input[contains(@name,'TIME_FROM_')]")
-    private WebElement timeForm;
+    public WebElement timeForm;
     @FindBy(xpath = "//input[@value='Set Time']")
-    private WebElement setTime;
+    public WebElement setTime;
     @FindBy(xpath = "    //input[@id='feed-cal-event-tocal_3Jcl']")
-    private WebElement endDate;
+    public WebElement endDate;
     @FindBy(xpath = "//input[@name='TIME_TO_']")
-    private WebElement endTimeForm;
+    public WebElement endTimeForm;
     @FindBy(xpath = "/html[1]/body[1]/div[8]/div[2]/input[1]")
-    private WebElement endSetTime;
+    public WebElement endSetTime;
     @FindBy(xpath = "//input[contains(@name,'EVENT_FULL_DAY')]")
-    private WebElement allDay;
+    public WebElement allDay;
     @FindBy(xpath = "//span[@class='feed-ev-tz-open']")
-    private WebElement specifyTimeZone;
+    public WebElement specifyTimeZone;
     @FindBy(id = "feed-cal-tz-fromcal_3Jcl")
-    private WebElement firstSpecifyZone;
+   public WebElement firstSpecifyZone;
     @FindBy(id= "feed-cal-tz-tocal_3Jcl")
-    private WebElement secondSpecifyZone;
+    public WebElement secondSpecifyZone;
 
     @FindBy(xpath = "//input[@class='feed-event-rem-ch']")
-    private WebElement setReminder;
-    @FindBy(xpath = "//input[@class='calendar-inp']")
-    private WebElement timeForReminder;
-    @FindBy(xpath = "//select[@class='calendar-select']")
-    private WebElement remindType;
+    public WebElement setReminder;
+    @FindBy(name = "EVENT_REMIND_COUNT")
+    public WebElement timeForReminder;
+    @FindBy(name = "EVENT_REMIND_TYPE")
+    public WebElement remindType;
 
     @FindBy(xpath = "//input[@class='calendar-inp calendar-inp-time calendar-inp-loc']")
-    private WebElement eventLocation;
+    public WebElement eventLocation;
+
+    @FindBy(xpath = "//div[@id='bxecmr_2']")
+    public WebElement westRoom;
+
+    @FindBy(id="bxecmr_2")
+    public WebElement westRoomId;
+
 
     @FindBy(xpath = "//label[@for='event-locationcal_3Jcl'][contains(.,'Event location')]")
     private WebElement evenLocationPopUp;
@@ -84,14 +96,14 @@ public class EventPage extends AbstractPageBase {
 
 
     @FindBy(id="feed-event-dest-add-link")
-    private WebElement addMembersLink;
+    public WebElement addMembersLink;
     @FindBy(xpath = "//div[@class='bx-finder-box-item-t7-name'][contains(.,'To all employees')]")
-    private WebElement allEmployees;
+   public WebElement allEmployees;
     @FindBy(xpath = "//span[@class='popup-window-close-icon']")
-    private WebElement popupClose;
+    public WebElement popupClose;
 
     @FindBy( xpath = "//span[@class='feed-event-more-link-text']")
-    private WebElement more;
+    public WebElement more;
 
 
 
@@ -119,22 +131,27 @@ public class EventPage extends AbstractPageBase {
 
 
       public void selectEventLocation(){
-          BrowserUtils.wait(2);
-          eventLocation.click();
+
+
+           BrowserUtils.wait(2);
+           eventLocation.click();
+           BrowserUtils.wait(2);
+
+            westRoomId.click();
+           BrowserUtils.wait(2);
+
+            String actual= westRoom.getText();
+            System.out.println(actual);
+            String expected="West Meeting Room";
             BrowserUtils.wait(2);
-          List<WebElement> dropdownList= driver.findElements(By.xpath("//div[@class='bxecpl-loc-popup calendar-inp calendar-inp-time calendar-inp-loc']"));
-          for (WebElement room : dropdownList) {
-              if (room.getText().equalsIgnoreCase("East Meeting Room")){
-                  room.click();
-              }
-              BrowserUtils.wait(4);
-              evenLocationPopUp.click();
-              BrowserUtils.wait(2);
+          // Assert.assertEquals(actual,expected);
+           // BrowserUtils.wait(2);
 
-
+          //Assert.assertTrue(westRoom.isSelected());
+          //Assert.assertEquals(westRoom, "West Meeting Room");
 
           }
-      }
+
 
 
         public void setReminder(){
@@ -153,14 +170,10 @@ public class EventPage extends AbstractPageBase {
         timeForReminder.sendKeys("1");
         BrowserUtils.wait(2);
 
-
-}
-
-    public void setRemindType(){
-
-    BrowserUtils.wait(2);
-    Select type=new Select(remindType);
+       Select type=new Select(remindType);
        type.selectByVisibleText("hours");
+
+
 }
 
     public void specifyZone(){
@@ -169,6 +182,7 @@ public class EventPage extends AbstractPageBase {
         wait.until(ExpectedConditions.visibilityOf(firstSpecifyZone)) .click();
         BrowserUtils.wait(2);
         wait.until(ExpectedConditions.visibilityOf(secondSpecifyZone)).click();
+        secondSpecifyZone.click();
         BrowserUtils.wait(2);
 
     }
@@ -204,9 +218,11 @@ public class EventPage extends AbstractPageBase {
           }
 
 
-    public void clickVisualEditor(){
+         public void clickVisualEditor(){
         wait.until(ExpectedConditions.visibilityOf(visualEditor)).click();
         BrowserUtils.wait(4);
+             Assert.assertTrue(toolbar.isDisplayed());
+
     }
 
 

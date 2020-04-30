@@ -7,53 +7,51 @@ import automation.pages.event.EventPage;
 import automation.pages.login.LoginPage;
 import automation.tests.AbstractTestBase;
 import automation.utilities.BrowserUtils;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class EventTestPart2 extends AbstractTestBase {
 
+    LoginPage login=new LoginPage();
+    EventPage eventPage=new EventPage();
+    ActivityStreamPageForEvent activityStreamPageForEvent =new ActivityStreamPageForEvent();
 
 
-        /**
-         * 6. User should be able to click on Visual Editor and see the editor text-bar displays on top of the message box.
+    // 6. User should be able to click on Visual Editor and see the editor text-bar displays on top of the message box.
 
-         Test steps:
-         1- Login page
-         2- click "event" under activity stream
-         3- click visual editor "A"
-         */
+
 
         @Test
         public void textbarDisplay(){
-            LoginPage login=new LoginPage();
-            EventPage eventPage=new EventPage();
-            ActivityStreamPageForEvent activityStreamPageForEvent =new ActivityStreamPageForEvent();
+
             login.defaultLogin();
             eventPage.navigateOnTopMenu("Event");
             eventPage.clickVisualEditor();
 
+            Assert.assertTrue(eventPage.toolbar.isDisplayed());
+
+
+
         }
 
+     // 7. User should be able to add Event start and ending date and time, and specify the time zone.
 
-    /**
-     * 7. User should be able to add Event start and ending date and time, and specify the time zone.
-     *
-     *          Test steps:
-     *          1- Login page
-     *          2- click "event" under activity stream
-     *          3- click "Event will start on"
-     */
           @Test
          public void timeArrangement(){
 
-        LoginPage login=new LoginPage();
-        EventPage eventPage=new EventPage();
-        ActivityStreamPageForEvent activityStreamPageForEvent =new ActivityStreamPageForEvent();
+
         login.defaultLogin();
         eventPage.navigateOnTopMenu("Event");
         eventPage.clickStartDate();
         eventPage.setTimeForm();
         eventPage.specifyZone();
+        Assert.assertTrue(eventPage.startDate.isDisplayed());
+        Assert.assertTrue(eventPage.timeForm.isDisplayed());
+        Assert.assertTrue(eventPage.endDate.isDisplayed());
+        Assert.assertTrue(eventPage.endTimeForm.isDisplayed());
+        Assert.assertTrue(eventPage.firstSpecifyZone.isDisplayed());
+        Assert.assertTrue(eventPage.secondSpecifyZone.isDisplayed());
 
 
          }
@@ -64,15 +62,13 @@ public class EventTestPart2 extends AbstractTestBase {
          @Test
        public void setReminder(){
 
-             LoginPage login=new LoginPage();
-             EventPage eventPage=new EventPage();
-             ActivityStreamPageForEvent activityStreamPageForEvent =new ActivityStreamPageForEvent();
              login.defaultLogin();
              eventPage.navigateOnTopMenu("Event");
              eventPage.setReminder();
              eventPage.setReminder();
              eventPage.setTimeForReminder();
-             eventPage.setRemindType();
+           Assert.assertTrue(eventPage.timeForReminder.isEnabled());
+           Assert.assertTrue(eventPage.remindType.getText().contains("hours"));
 
          }
 
@@ -83,14 +79,11 @@ public class EventTestPart2 extends AbstractTestBase {
         @Test
     public void eventLocation(){
 
-            LoginPage login=new LoginPage();
-            EventPage eventPage=new EventPage();
-            ActivityStreamPageForEvent activityStreamPageForEvent =new ActivityStreamPageForEvent();
+
             login.defaultLogin();
             eventPage.navigateOnTopMenu("Event");
-
             eventPage.selectEventLocation();
-
+            Assert.assertTrue(eventPage.eventLocation.isDisplayed());
 
 
 
@@ -105,13 +98,13 @@ public class EventTestPart2 extends AbstractTestBase {
     @Test
         public void addPerson(){
 
-            LoginPage login=new LoginPage();
-            EventPage eventPage=new EventPage();
-            ActivityStreamPageForEvent activityStreamPageForEvent =new ActivityStreamPageForEvent();
+
             login.defaultLogin();
             eventPage.navigateOnTopMenu("Event");
             eventPage.addAllEmployeesToEvent();
            eventPage.clickMore();
+           Assert.assertTrue(eventPage.addMembersLink.isDisplayed());
+           Assert.assertTrue(eventPage.more.isEnabled());
 
 
         }
