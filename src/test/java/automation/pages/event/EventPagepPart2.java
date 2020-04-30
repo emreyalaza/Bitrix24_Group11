@@ -12,7 +12,7 @@ import org.testng.Assert;
 import java.security.Key;
 import java.util.List;
 
-public class EventPage extends AbstractPageBase {
+public class EventPagepPart2 extends AbstractPageBase {
 
     @FindBy(css = "[placeholder='Event name']")
     private WebElement eventNameField;

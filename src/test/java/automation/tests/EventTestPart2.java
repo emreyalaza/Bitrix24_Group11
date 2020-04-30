@@ -1,20 +1,17 @@
 package automation.tests;
 
 
-import automation.pages.AbstractPageBase;
 import automation.pages.event.ActivityStreamPageForEvent;
-import automation.pages.event.EventPage;
+import automation.pages.event.EventPagepPart2;
 import automation.pages.login.LoginPage;
-import automation.tests.AbstractTestBase;
 import automation.utilities.BrowserUtils;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class EventTestPart2 extends AbstractTestBase {
 
     LoginPage login=new LoginPage();
-    EventPage eventPage=new EventPage();
+    EventPagepPart2 eventPage=new EventPagepPart2();
     ActivityStreamPageForEvent activityStreamPageForEvent =new ActivityStreamPageForEvent();
 
 
@@ -83,6 +80,7 @@ public class EventTestPart2 extends AbstractTestBase {
             login.defaultLogin();
             eventPage.navigateOnTopMenu("Event");
             eventPage.selectEventLocation();
+            BrowserUtils.wait(2);
             Assert.assertTrue(eventPage.eventLocation.isDisplayed());
 
 
