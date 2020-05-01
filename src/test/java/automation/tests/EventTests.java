@@ -1,9 +1,8 @@
 package automation.tests;
 
 import automation.pages.event.ActivityStreamPageForEvent;
-import automation.pages.event.EventPage;
+import automation.pages.event.EventPagepPart2;
 import automation.pages.login.LoginPage;
-import automation.tests.AbstractTestBase;
 import automation.utilities.BrowserUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -34,7 +33,7 @@ public class EventTests extends AbstractTestBase {
     @Test
     public void verifyLinkAddedToEvent(){
         LoginPage lp=new LoginPage();
-        EventPage eventPage=new EventPage();
+        EventPagepPart2 eventPage=new EventPagepPart2();
         ActivityStreamPageForEvent activityStreamPageForEvent =new ActivityStreamPageForEvent();
         lp.defaultLogin();
         eventPage.navigateOnTopMenu("Event");
@@ -58,7 +57,7 @@ public class EventTests extends AbstractTestBase {
     @Test
     public void verifyVideoInsertedToEvent(){
         LoginPage lp=new LoginPage();
-        EventPage eventPage=new EventPage();
+        EventPagepPart2 eventPage=new EventPagepPart2();
         ActivityStreamPageForEvent activityStreamPageForEvent =new ActivityStreamPageForEvent();
 
         lp.defaultLogin();
