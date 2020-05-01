@@ -1,9 +1,10 @@
-package automation.tests;
+package automation.tests.event;
 
 
 import automation.pages.event.ActivityStreamPageForEvent;
 import automation.pages.event.EventPagepPart2;
 import automation.pages.login.LoginPage;
+import automation.tests.AbstractTestBase;
 import automation.utilities.BrowserUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
