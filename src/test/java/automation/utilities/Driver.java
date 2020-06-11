@@ -39,7 +39,7 @@ public class Driver {
                     WebDriverManager.chromedriver().version("81").setup();
                     driver = new ChromeDriver();
                     break;
-                case "chromeheadless":
+                case "chrome2":
                     //to run chrome without interface
                     WebDriverManager.chromedriver().version("81").setup();
                     ChromeOptions options = new ChromeOptions();
