@@ -41,7 +41,7 @@ public class Driver {
                     options.addArguments("start-maximized");
                     driver = new ChromeDriver(options);
                     break;
-                case "chromeNew":
+                case "chrome2":
                     //to run chrome without interface
                     WebDriverManager.chromedriver().version("80").setup();
                      options = new ChromeOptions();
