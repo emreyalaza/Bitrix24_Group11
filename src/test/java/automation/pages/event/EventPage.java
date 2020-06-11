@@ -1,6 +1,7 @@
 package automation.pages.event;
 
 import automation.pages.AbstractPageBase;
+import automation.utilities.BrowserUtils;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,6 +36,22 @@ public class EventPage extends AbstractPageBase {
     @FindBy(id="blog-submit-button-save")
     private WebElement sendButton;
 
+    @FindBy(id="feed-event-dest-add-link")
+    private WebElement addMembersLink;
+
+    @FindBy(xpath = "//div[@class='bx-finder-box-item-t7-name'][contains(.,'To all employees')]")
+    private WebElement allEmployees;
+
+    @FindBy(xpath = "//span[@class='popup-window-close-icon']")
+    private WebElement popupClose;
+
+    public void addAllEmployeesToEvent(){
+        addMembersLink.click();
+      //  BrowserUtils.wait(3);
+        allEmployees.click();
+      //  BrowserUtils.wait(3);
+        popupClose.click();
+    }
 
     public void setEventName(String eventName){
         wait.until(ExpectedConditions.visibilityOf(eventNameField)).sendKeys(eventName);

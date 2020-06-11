@@ -42,6 +42,8 @@ public class EventTests extends AbstractTestBase {
         eventPage.setEventName(eventTitle);
         eventPage.setEventText("Sprint#21 planning meeting will cover .... \n");
         eventPage.addLinkToEvent("Spring planning info link","https://www.leadingagile.com/2012/08/simple-cheat-sheet-to-sprint-planning-meeting/");
+        eventPage.addAllEmployeesToEvent();
+        BrowserUtils.wait(5);
         eventPage.saveEvent();
         Assert.assertEquals(activityStreamPageForEvent.latestEventTitle(),eventTitle);
         BrowserUtils.wait(5);
