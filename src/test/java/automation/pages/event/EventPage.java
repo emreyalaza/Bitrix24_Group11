@@ -1,4 +1,7 @@
 package automation.pages.event;
+/**
+ *  new update jun10
+ */
 
 import automation.pages.AbstractPageBase;
 import automation.utilities.BrowserUtils;
