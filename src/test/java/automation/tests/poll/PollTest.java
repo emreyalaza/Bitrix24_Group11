@@ -67,6 +67,9 @@ public class PollTest extends AbstractTestBase {
 
 //Driver.getDriver().findElement(uploadingFile).sendKeys((System.getProperty("user.dir")+"/pom.xml"));
         BrowserUtils.wait(2);
+
+        Driver.getDriver().findElement(sendBtn).click();
+
     }
 
     /**
@@ -102,23 +105,15 @@ public class PollTest extends AbstractTestBase {
         pollPage.navigateOnTopMenu("Poll");
         BrowserUtils.wait(2);
 
-        pollPage.insertVideo("https://www.youtube.com/watch?v=BL4-_tVx2rE");
+        pollPage.insertVideo("https://vimeo.com/182592195");
         BrowserUtils.wait(6);
         // wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//td[@class ='bxhtmled-left-c'] /label")));
 
         Driver.getDriver().findElement(saveTheVideoLinkIconBy).click();
         BrowserUtils.wait(4);
         pollPage.sendButton();
-        List<WebElement> afterLink = Driver.getDriver().findElements(By.xpath("//td[@class ='bxhtmled-left-c'] /label"));
-        Assert.assertTrue(afterLink.size() > 0);
-
-        //driver.findElement(saveIconBy).click();
 
         BrowserUtils.wait(4);
-//        Driver.getDriver().findElement(sendBtn).click();
-//        BrowserUtils.wait(4);
-//        //Assert.assertTrue(Driver.getDriver().findElement(By.cssSelector("div[style*='X9eLWkZBKgQ']")).isDisplayed());
-
 
     }
 
