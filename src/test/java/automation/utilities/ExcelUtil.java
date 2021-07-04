@@ -25,6 +25,10 @@ public class ExcelUtil {
         try {
             // Open the Excel file
             FileInputStream ExcelFile = new FileInputStream(path);
+            // FileInputStream which is responsible for pointing towards the file from which the data should be read.
+
+
+
             // Access the required test data sheet
             workBook = WorkbookFactory.create(ExcelFile);
             workSheet = workBook.getSheet(sheetName);
